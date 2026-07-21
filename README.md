@@ -1,5 +1,9 @@
 # Skill As Step by Step Mentor
 
+<p align="right">
+  <strong>English</strong> | <a href="./README.zh-CN.md">简体中文</a>
+</p>
+
 A Codex skill-agent project for source-grounded, hands-on engineering learning. It turns a broad learning goal into an adaptive route, verifies practical evidence one checkpoint at a time, and persists recoverable Markdown progress.
 
 ## Included
