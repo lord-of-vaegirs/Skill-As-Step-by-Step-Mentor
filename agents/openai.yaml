@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill As Step by Step Mentor"
+  short_description: "用可恢复的学习路线、实践检查点与进度文件指导工程技术学习"
+  default_prompt: "Use $skill-as-step-by-step-mentor to guide me through a practical engineering learning goal and persist my progress."

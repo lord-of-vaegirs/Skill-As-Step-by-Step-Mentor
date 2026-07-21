@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local IDE and Codex configuration
+.DS_Store
+.idea/
+.vscode/
+.codex/
+
+# Temporary and generated learning state
+*.tmp
+learning-progress/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# Office documents and PDFs
+*.doc
+*.docx
+*.pdf
+*.xls
+*.xlsx
+*.xlsm
+*.ppt
+*.pptx
+
+# Executables and compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.o
+*.obj
+*.a
+*.lib
+*.class
+*.jar
+
+# OS packages and disk images
+*.dmg
+*.pkg

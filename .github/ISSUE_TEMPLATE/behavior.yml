@@ -1,0 +1,37 @@
+name: Behavior improvement
+description: Propose or report a mentoring behavior with a reproducible scenario
+title: "[Behavior]: "
+labels: ["behavior"]
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: Learner request
+      description: Provide a minimal, non-sensitive example prompt.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Learning route
+        - Checkpoint mentoring
+        - Portable commands
+        - Progress persistence
+        - Safety
+        - Documentation
+    validations:
+      required: true
