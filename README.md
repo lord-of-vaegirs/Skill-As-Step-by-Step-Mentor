@@ -6,6 +6,8 @@
 
 A Codex skill-agent project for source-grounded, hands-on engineering learning. It turns a broad learning goal into an adaptive route, verifies practical evidence one checkpoint at a time, and persists recoverable Markdown progress.
 
+By default, every learning part explains the relevant knowledge before presenting answers or practice. If no final goal is supplied, Codex proposes an observable goal with success evidence and asks the learner to approve or revise it before the route begins.
+
 ## Why did I create this skill?
 In today's world, learning across various fields—especially computer science—often presents a challenge: while resources abound, truly absorbing the material is difficult. After much reflection, I realized the root cause is the lack of an immersive learning experience. We often have resources at our fingertips but don't know where to start or how to structure a study plan, leading us to quickly forget what we’ve learned. To address these persistent issues, I decided to harness the power of AI. It acts as a dedicated, 24/7 personal tutor—always at your beck and call—to handle planning and practice scheduling. It addresses your specific questions and ideas, providing tailored exercises and examples that help you master the material with confidence. For added convenience, I’ve included special commands; simply type `[command]` into the chat box to learn how to use them. I hope this tool helps you navigate your learning journey with greater engagement and a firmer grasp of the knowledge!
 
