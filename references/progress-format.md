@@ -49,6 +49,12 @@ updated_at: "<ISO 8601>"
 
 **Next action:** <one concrete action>
 
+## Terminology ledger
+
+| Term | Expansion | Plain-language meaning | First checkpoint |
+|---|---|---|---|
+| <term or none yet> | <full form or —> | <short definition> | <checkpoint ID> |
+
 ## Evidence
 
 - No evidence recorded yet.
@@ -62,7 +68,7 @@ updated_at: "<ISO 8601>"
 - <timestamp> — Session created.
 ```
 
-The bundled helper writes a minimal valid form. The mentor may extend sections but must preserve the frontmatter keys and standard headings.
+The bundled helper writes a minimal valid form. The mentor may extend sections but must preserve the frontmatter keys and standard headings. Record each concept-bearing term when it is first explained so vocabulary state survives save and load operations. For an older valid file without `## Terminology ledger`, add the section on the next mutation without rewriting earlier history.
 
 ## Status vocabulary
 

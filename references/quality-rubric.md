@@ -4,6 +4,8 @@ Assess each dimension as `not shown`, `developing`, or `demonstrated`.
 
 | Dimension | Demonstrated evidence |
 |---|---|
+| Scaffolding | Connects context, prerequisites, vocabulary, structure, operation, example, and practice without a missing conceptual step. |
+| Terminology | Defines each new concept-bearing term before use and records it for reliable session continuation. |
 | Mental model | Explains cause and effect in the learner's own words and predicts a new case. |
 | Execution | Produces the intended artifact or performs the operation with reproducible steps. |
 | Verification | Uses relevant tests, observations, or source evidence and interprets the result. |

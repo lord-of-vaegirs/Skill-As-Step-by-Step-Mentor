@@ -70,6 +70,36 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("do not finalize the route", protocol_text)
         self.assertIn("Codex 会提出", command_text)
 
+    def test_new_terminology_is_explained_before_use(self) -> None:
+        skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        protocol_text = (
+            ROOT / "references" / "mentoring-protocol.md"
+        ).read_text(encoding="utf-8")
+        progress_text = (
+            ROOT / "references" / "progress-format.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("Before first using an unexplained", skill_text)
+        self.assertIn("### Terminology gate", protocol_text)
+        self.assertIn("define it in plain language", protocol_text)
+        self.assertIn("Do not hide a new term", protocol_text)
+        self.assertIn("## Terminology ledger", progress_text)
+
+    def test_explanations_follow_a_guided_dependency_chain(self) -> None:
+        skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        protocol_text = (
+            ROOT / "references" / "mentoring-protocol.md"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("guided dependency chain", skill_text)
+        self.assertIn("learner-provided materials", skill_text)
+        for step in [
+            "**Context**", "**Prerequisites**", "**Vocabulary**",
+            "**Structure**", "**Operation**", "**Example**", "**Practice**",
+        ]:
+            self.assertIn(step, protocol_text)
+        self.assertIn("why the next concept is needed", protocol_text)
+
 
 if __name__ == "__main__":
     unittest.main()

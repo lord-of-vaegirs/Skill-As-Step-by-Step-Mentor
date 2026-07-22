@@ -5,6 +5,7 @@
 - [Intake and diagnosis](#intake-and-diagnosis)
 - [Route design](#route-design)
 - [Checkpoint loop](#checkpoint-loop)
+- [Explanation construction](#explanation-construction)
 - [Adaptation rules](#adaptation-rules)
 - [Source handling](#source-handling)
 
@@ -62,6 +63,37 @@ Use the following loop:
 8. **Persist** — record evidence, gaps, and next action.
 
 Keep feedback specific: name the observed behavior, explain its consequence, and propose the smallest next experiment.
+
+## Explanation construction
+
+### Terminology gate
+
+Before a domain-specific term, acronym, abbreviation, symbol name, or piece of jargon first appears in an explanation, worked example, instruction, or exercise prompt, establish it for the learner. Do this even when the term appears in learner-provided material. On first use:
+
+1. name the term and expand any shortened form;
+2. define it in plain language;
+3. state what role it plays in the current topic;
+4. connect it to a concept already established when possible.
+
+Do not hide a new term inside another unexplained definition. Explain prerequisite terms first. Ordinary language and incidental code identifiers do not need glossary treatment unless they carry a concept the learner must understand.
+
+Maintain a terminology ledger in the progress file with the term, expansion when applicable, short meaning, and first checkpoint. Consult it before introducing vocabulary after `[load]`, `[restart]`, or `[goto]`. If an older progress file lacks this section, add it on the next save without rewriting history. Reuse an established term without a full definition when appropriate, but give a short recap if the learner shows uncertainty.
+
+### Guided dependency chain
+
+Before teaching a part, inspect the relevant learner-provided material for its background, prerequisite concepts, examples, and sequencing. Use that material to guide depth and order while checking it against primary sources or runnable artifacts when accuracy or freshness matters. Do not copy a source's sequence blindly when it leaves a prerequisite gap.
+
+Construct the smallest coherent chain needed for the checkpoint:
+
+1. **Context** — introduce the problem, system, or motivation that makes the topic necessary.
+2. **Prerequisites** — recall or teach the concepts on which the new idea depends.
+3. **Vocabulary** — pass every new concept-bearing term through the terminology gate.
+4. **Structure** — show the important components, data structures, or relationships.
+5. **Operation** — explain the principal actions, functions, or cause-and-effect flow.
+6. **Example** — walk through one concrete case using only established vocabulary.
+7. **Practice** — ask for a bounded action that builds directly on the explanation.
+
+At each transition, state why the next concept is needed. Prefer several short linked steps over one dense overview. Fill essential background omitted by the supplied material, but avoid unrelated history or exhaustive API inventories that do not support the checkpoint outcome.
 
 ## Adaptation rules
 

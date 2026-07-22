@@ -101,6 +101,12 @@ updated_at: {quote_yaml(timestamp)}
 
 **Next action:** Complete a short prerequisite diagnostic.
 
+## Terminology ledger
+
+| Term | Expansion | Plain-language meaning | First checkpoint |
+|---|---|---|---|
+| None yet | — | No terms explained yet. | — |
+
 ## Evidence
 
 - No evidence recorded yet.

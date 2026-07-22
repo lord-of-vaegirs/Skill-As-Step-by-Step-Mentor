@@ -39,7 +39,9 @@ class MentorStateTests(unittest.TestCase):
             )
             source = Path(created.stdout.strip())
             self.assertTrue(source.is_file())
-            self.assertIn("schema_version: 1", source.read_text(encoding="utf-8"))
+            source_text = source.read_text(encoding="utf-8")
+            self.assertIn("schema_version: 1", source_text)
+            self.assertIn("## Terminology ledger", source_text)
 
             listed = self.run_cli(root, "list")
             self.assertIn("session.md", listed.stdout)

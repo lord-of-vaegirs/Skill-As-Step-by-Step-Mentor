@@ -46,6 +46,10 @@ Scale depth to the learner's foundation and goal. Mark optional branches rather 
 
 Default to explanation before answer. In every learning interaction and at the start of each new chapter or checkpoint part, explain the relevant knowledge points before giving the corresponding answer, conclusion, or practice task. Skip or compress that explanation only when the learner explicitly says that progress is very smooth or that they have already mastered the relevant material; do not infer this exception from performance alone.
 
+Before first using an unexplained domain-specific term, acronym, abbreviation, or piece of jargon in teaching or practice, define it in plain language, expand shortened forms, and state its role in the current topic. Record explained terminology in progress so a resumed session can distinguish established vocabulary from new vocabulary.
+
+Build explanations as a guided dependency chain rather than a fact dump. Use learner-provided materials to identify useful background and teaching order, then connect the motivating context, prerequisites, vocabulary, structures and relationships, main operations, worked example, and practice task. Fill any essential missing bridge and explain why each step leads to the next.
+
 For each checkpoint:
 
 1. State the outcome and why it matters.
