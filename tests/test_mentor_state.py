@@ -41,7 +41,11 @@ class MentorStateTests(unittest.TestCase):
             self.assertTrue(source.is_file())
             source_text = source.read_text(encoding="utf-8")
             self.assertIn("schema_version: 1", source_text)
+            self.assertIn('current_part: "part-1"', source_text)
+            self.assertIn('current_phase: "part_explanation"', source_text)
+            self.assertIn("## Part status", source_text)
             self.assertIn("## Terminology ledger", source_text)
+            self.assertIn("## Q&A archive", source_text)
 
             listed = self.run_cli(root, "list")
             self.assertIn("session.md", listed.stdout)

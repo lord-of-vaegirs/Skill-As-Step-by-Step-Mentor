@@ -26,7 +26,8 @@ topic: "<topic>"
 goal: "<observable goal>"
 foundation: "<learner foundation>"
 status: "active"
-current_checkpoint: "diagnostic"
+current_part: "part-1"
+current_phase: "part_explanation"
 created_at: "<ISO 8601>"
 updated_at: "<ISO 8601>"
 ---
@@ -37,27 +38,43 @@ updated_at: "<ISO 8601>"
 
 - <source or none provided>
 
-## Route
+## Route overview
 
-- [ ] Diagnostic — establish prerequisites
-- [ ] Chapter 1 — <observable outcome>
-- [ ] Integration — <final artifact>
+- [ ] Part 1 — <title>: <explanation outcome>; <practice outcome>
+- [ ] Part 2 — <title>: <explanation outcome>; <practice outcome>
 
-## Current checkpoint
+## Part status
 
-**ID:** diagnostic
+| Part | Explanation | Practice | Review | Summary |
+|---|---|---|---|---|
+| Part 1 | active | locked | locked | locked |
+| Part 2 | locked | locked | locked | locked |
 
-**Next action:** <one concrete action>
+## Current part
+
+**ID:** part-1
+
+**Phase:** part_explanation
+
+**Next action:** Read and question the explanation, then send `[finish]` when it is understood.
 
 ## Terminology ledger
 
-| Term | Expansion | Plain-language meaning | First checkpoint |
+| Term | Expansion | Plain-language meaning | First part |
 |---|---|---|---|
-| <term or none yet> | <full form or —> | <short definition> | <checkpoint ID> |
+| <term or none yet> | <full form or —> | <short definition> | <part ID> |
 
 ## Evidence
 
 - No evidence recorded yet.
+
+## Q&A archive
+
+- No questions or answers recorded yet.
+
+## Part summaries
+
+- No part summarized yet.
 
 ## Open questions
 
@@ -68,7 +85,7 @@ updated_at: "<ISO 8601>"
 - <timestamp> — Session created.
 ```
 
-The bundled helper writes a minimal valid form. The mentor may extend sections but must preserve the frontmatter keys and standard headings. Record each concept-bearing term when it is first explained so vocabulary state survives save and load operations. For an older valid file without `## Terminology ledger`, add the section on the next mutation without rewriting earlier history.
+The bundled helper writes a minimal valid form. The mentor may extend sections but must preserve the frontmatter keys and standard headings. Replace route placeholders after inspecting the learner's references. Record each concept-bearing term when it is first explained so vocabulary state survives save and load operations. For an older valid file missing `current_part`, `current_phase`, `## Part status`, `## Q&A archive`, or `## Terminology ledger`, add the missing state on the next mutation without rewriting unrelated history.
 
 ## Status vocabulary
 
@@ -76,10 +93,13 @@ The bundled helper writes a minimal valid form. The mentor may extend sections b
 - `paused`: state is saved and has a next action;
 - `blocked`: an external or prerequisite blocker is recorded;
 - `completed`: the final artifact has been assessed against the original goal;
-- checkpoint markers: pending `[ ]`, complete `[x]`, and skipped `[-]`.
+- route markers: pending `[ ]` and summarized `[x]`;
+- phases: `intake`, `part_explanation`, `part_practice`, `part_review`, `part_summary_ready`, `final_summary_ready`, and `completed`.
 
-Do not mark a checkpoint complete without evidence. Do not use `completed` merely because the planned time ended.
+Do not mark a part complete until its error-free practice has been reviewed and `[summarize]` has produced the part summary. Do not use `completed` before `[summarize all]` produces the final synthesis.
 
 ## History rules
 
-Append events; do not rewrite history. Record start, save, restart, goto, scope change, blocker, resume, and completion. Include enough context to explain why the current state differs from the original route, without storing secrets or unnecessary personal data.
+Append events and do not rewrite unrelated history. Record start, save, restart, goto, phase transition, scope change, blocker, resume, and completion. Include enough context to explain why the current state differs from the original route, without storing secrets or unnecessary personal data.
+
+Restart is the exception for affected learning history: preserve Q&A entries for the reset range, but remove that range's theory-learning records, terminology entries first established there, exercises, submitted results, review evidence, completion markers, part summaries, and history events that assert those states. Append only a minimal restart event naming the target and reset range. Actual learner files are outside restart cleanup and must not be deleted.

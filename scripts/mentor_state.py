@@ -78,7 +78,8 @@ topic: {quote_yaml(args.topic)}
 goal: {quote_yaml(args.goal)}
 foundation: {quote_yaml(args.foundation)}
 status: "active"
-current_checkpoint: "diagnostic"
+current_part: "part-1"
+current_phase: "part_explanation"
 created_at: {quote_yaml(timestamp)}
 updated_at: {quote_yaml(timestamp)}
 ---
@@ -89,27 +90,43 @@ updated_at: {quote_yaml(timestamp)}
 
 - {sources}
 
-## Route
+## Route overview
 
-- [ ] Diagnostic — establish prerequisites
-- [ ] Route design — adapt chapters from diagnostic evidence
-- [ ] Integration — verify the final artifact against the goal
+- [ ] Part 1 — replace with a source-grounded explanation and practice outcome
+- [ ] Part 2 — replace or remove after route design
 
-## Current checkpoint
+## Part status
 
-**ID:** diagnostic
+| Part | Explanation | Practice | Review | Summary |
+|---|---|---|---|---|
+| Part 1 | active | locked | locked | locked |
+| Part 2 | locked | locked | locked | locked |
 
-**Next action:** Complete a short prerequisite diagnostic.
+## Current part
+
+**ID:** part-1
+
+**Phase:** part_explanation
+
+**Next action:** Read and question the explanation, then send `[finish]` when it is understood.
 
 ## Terminology ledger
 
-| Term | Expansion | Plain-language meaning | First checkpoint |
+| Term | Expansion | Plain-language meaning | First part |
 |---|---|---|---|
 | None yet | — | No terms explained yet. | — |
 
 ## Evidence
 
 - No evidence recorded yet.
+
+## Q&A archive
+
+- No questions or answers recorded yet.
+
+## Part summaries
+
+- No part summarized yet.
 
 ## Open questions
 

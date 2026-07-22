@@ -11,6 +11,7 @@
 ## General rules
 
 - Recognize commands case-insensitively after trimming surrounding whitespace.
+- Match the longest complete command first so `[summarize all]` is never handled as `[summarize]`.
 - Require the whole user message to be a command, unless the user explicitly says that an inline token is an instruction.
 - Treat general usage questions as `[help]`.
 - Treat questions about command names or syntax as `[command]`.
@@ -28,18 +29,18 @@ Skill As Step by Step Mentor 使用方法
 
 学习主题：
 参考资料：
-我的基础：
 工作目录：
 目标：
+我的基础（可选）：
 ```
 
 Then explain:
 
 - 学习主题：希望系统学习的技术方向。
 - 参考资料：官方文档、书籍、课程、论文、代码仓库等。
-- 我的基础：当前知识水平和实践经验。
 - 工作目录：用于保存学习进度 Markdown 文件。
 - 目标：希望最终能够解释、实现、调试或交付的结果；如果未提供，Codex 会提出包含成功证据和范围假设的暂定目标，交由你检查、确认或修改。
+- 我的基础（可选）：当前知识水平和实践经验；未提供时从保守起点开始，并根据后续问答和练习调整。
 
 End with:
 
@@ -57,26 +58,38 @@ Return the complete command list:
 [start]
 开始新的学习任务。
 
+[finish]
+标识当前学习部分的讲解已经理解，并解锁当前部分的练习。
+
+[summarize]
+总结已经无错误的当前学习部分，然后进入下一部分。
+
+[summarize all]
+在所有学习部分均已总结后，生成最终总总结。
+
+[restart]
+保留当前部分的问答记录，清除其学习与练习状态，并从讲解重新开始。
+
 [restart ...]
-从指定学习章节重新开始。
+保留回退范围内的问答记录，清除该范围的学习与练习状态，并从指定部分重新开始。
 
 [restart all]
-从学习路线最开始重新学习，但保留历史记录。
+保留全部问答记录，清除全部学习与练习状态，并从第一部分讲解重新开始。
 
 [goto ...]
-跳转到指定学习位置。
+前往已经解锁的位置，不允许越过当前阶段或进入未解锁部分。
 
 [goto whole head]
 前往整个学习路线开始。
 
 [goto whole tail]
-前往最终总结阶段。
+仅在所有部分均已总结后前往最终总结阶段。
 
 [goto part head]
-重新学习当前章节。
+回到当前部分已经解锁的最早位置；需要重新学习时按 `[restart]` 规则处理。
 
 [goto part tail]
-总结当前章节。
+前往当前部分已经解锁的最晚阶段，不会绕过 `[finish]`、练习审查或 `[summarize]`。
 
 [save]
 保存当前学习进展。
@@ -113,14 +126,18 @@ Return the complete command list:
 
 | Command | Required behavior |
 |---|---|
-| `[start]` | Validate intake, create the route and a new progress file, then begin the first checkpoint. |
-| `[restart <chapter>]` | Append a history event, reset that chapter's checkpoint state, and retain earlier evidence. |
-| `[restart all]` | Append a history event and return to the first route checkpoint without erasing history. |
-| `[goto <target>]` | Resolve a unique chapter/checkpoint by number or title; ask for clarification if multiple targets match. |
-| `[goto whole head]` | Move to the first checkpoint in the route. |
-| `[goto whole tail]` | Move to final integration and summary. Do not mark skipped checkpoints complete. |
-| `[goto part head]` | Move to the first checkpoint of the current chapter. |
-| `[goto part tail]` | Move to the current chapter's summary and assessment. |
+| `[start]` | Validate the required intake, inspect references, create the part route and progress file, show only the route overview, then give Part 1's explanation without practice. |
+| `[finish]` | Valid only in `part_explanation`; record that the explanation phase ended and return the active part's practice. Never interpret it as practice completion. |
+| `[summarize]` | Valid only in `part_summary_ready`; summarize and complete the active part, then start only the next part's explanation. After the last part, enter `final_summary_ready`. |
+| `[summarize all]` | Valid only in `final_summary_ready`; synthesize all summarized parts and mark the route completed. |
+| `[restart]` | Apply restart semantics to the current part and return to its explanation. |
+| `[restart <part>]` | Resolve a unique current or previously unlocked part, preserve Q&A for the affected range, clear its learning and exercise state, reset the target and later unlocked parts, and return to the target explanation. Reject locked future parts. |
+| `[restart all]` | Preserve Q&A, clear learning and exercise state for every part, retain the route and restart Part 1's explanation. |
+| `[goto <target>]` | Resolve a unique already unlocked part or phase. Refuse locked future content and any transition that would bypass the current gate. |
+| `[goto whole head]` | Revisit the beginning only by applying `[restart all]` semantics; do not silently retain completion evidence. |
+| `[goto whole tail]` | Enter final summary only when every part has been summarized; otherwise refuse and report the current gate. |
+| `[goto part head]` | Revisit the active part's beginning by applying `[restart]` semantics when that would cross completed phase state. |
+| `[goto part tail]` | Move only to the latest phase already unlocked in the active part; never create a phase transition or summary. |
 | `[save]` | Persist the current state atomically to the active file. |
 | `[save <path>]` | Save a copy under the explicit path after validating it. The literal `[save path]` asks the user for a path. |
 | `[save exit]` / `[exit]` | Save, report the exact next action and file path, then stop mentoring for this turn. |
@@ -128,7 +145,7 @@ Return the complete command list:
 | `[del exit]` | Confirm, delete only the active progress file, then stop. |
 | `[list]` | List progress Markdown files in the active work directory. |
 | `[list <path>]` | List progress Markdown files under the specified directory. The literal `[list path]` asks for a path. |
-| `[load <filename>]` | Load one validated progress file and summarize its next action. |
+| `[load <filename>]` | Load one validated progress file, restore its authoritative active part and phase, and report the exact next valid action without leaking locked content. |
 | `[load all]` | Discover all progress files but do not merge incompatible routes silently. Summarize each and ask which to activate. |
 
 ## Resolution and safety
@@ -136,6 +153,8 @@ Return the complete command list:
 - Resolve relative paths against the active work directory, not the process home directory.
 - Prevent path traversal outside the explicit root unless the user clearly supplies and authorizes another root.
 - Write via a temporary sibling file and atomic replacement.
-- Preserve prior evidence and history across restart and goto operations.
+- Preserve evidence and history when using goto. Apply the narrower Q&A-only preservation rule when restarting.
+- For restart, preserve Q&A archives but clear theory, terminology, exercises, review evidence, completion markers, and summaries in the reset range. Do not delete learner artifacts.
+- Never use save, load, restart, or goto to unlock a phase or future part.
 - Ask for confirmation immediately before delete; a previous broad request is not confirmation.
 - If save fails, keep the in-memory state and report the error. Never claim success without verifying the file.
