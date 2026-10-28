@@ -1,0 +1,6 @@
+# The `files` field ships whole directories, so filter local caches here too.
+__pycache__/
+*.py[cod]
+.DS_Store
+tests/
+.github/

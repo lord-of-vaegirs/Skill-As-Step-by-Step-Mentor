@@ -68,7 +68,7 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("approve or revise it", skill_text)
         self.assertIn("autonomously propose a provisional goal", protocol_text)
         self.assertIn("do not finalize the route", protocol_text)
-        self.assertIn("Codex 会提出", command_text)
+        self.assertIn("导师会提出", command_text)
 
     def test_new_terminology_is_explained_before_use(self) -> None:
         skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")

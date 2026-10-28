@@ -1,0 +1,9 @@
+# The Skill As Step by Step Mentor bundle patch.
+#
+# A bundle patch is an ordered list of loader patch entries. This bundle inserts
+# one row: a skill provider that reads the skill bundle shipped beside
+# lib/index.js. The row name resolves to this package itself, which the profile
+# installs as a dependency, so the bundle declares no other packages.
+- insert:
+    - id: skill-step-mentor
+      name: 'dsh-skill-step-by-step-mentor'

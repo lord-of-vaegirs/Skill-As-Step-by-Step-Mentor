@@ -1,0 +1,41 @@
+{
+  "name": "dsh-skill-step-by-step-mentor",
+  "version": "1.0.0",
+  "description": "DeepSeek Harness bundle and Codex skill for strictly gated, source-grounded engineering mentoring with recoverable progress.",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
+    "SKILL.md",
+    "agents",
+    "references",
+    "scripts"
+  ],
+  "icon": "./icon.svg",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh-bundle",
+    "dsh-skill",
+    "mentoring",
+    "learning",
+    "deepseek-harness",
+    "codex-skill"
+  ],
+  "scripts": {
+    "test": "node --test tests/provider.test.mjs"
+  }
+}

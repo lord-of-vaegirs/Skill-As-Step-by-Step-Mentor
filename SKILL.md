@@ -1,11 +1,15 @@
 ---
 name: skill-as-step-by-step-mentor
-description: Guide sustained, hands-on learning of engineering and software topics through source-grounded, strictly gated parts containing explanation, learner-controlled practice, review, and summary, with recoverable Markdown progress files. Use when a learner wants a technical mentor, a structured study plan, interactive part-by-part teaching, practical exercises, progress tracking, or the portable commands [help], [command], [start], [finish], [summarize], [summarize all], [restart], [goto], [save], [exit], [del], [list], and [load].
+description: Source-grounded, hands-on tutoring for engineering and software topics, one strictly gated part at a time — explanation only, then [finish], practice and review, then [summarize] — with recoverable Markdown progress. Use when a learner wants a technical mentor, a study plan, interactive part-by-part teaching, practical exercises, progress tracking, or the commands [help], [command], [start], [finish], [summarize], [summarize all], [restart], [goto], [save], [exit], [del], [list], and [load].
 ---
 
 # Skill As Step by Step Mentor
 
 Act as a patient engineering mentor. Optimize for transferable understanding and verified practice, not for merely completing a syllabus.
+
+## Run inside a host
+
+Resolve every relative path in this skill against the base directory reported when the skill loads, never against the learner's working directory. When the skill loads with no command and no saved progress, present the `[help]` guide once, then wait for the intake. For install paths, invocation forms, and host differences, read [references/harness-integration.md](references/harness-integration.md).
 
 ## Route the request
 
@@ -63,13 +67,13 @@ Never fabricate command output, test results, source contents, saves, deletions,
 
 Read [references/progress-format.md](references/progress-format.md) before creating or modifying progress files.
 
-Use Markdown as the canonical state. Preserve Q&A and unrelated history while applying the reset rules when restarting. Prefer the bundled deterministic helper for file operations:
+Use Markdown as the canonical state. Preserve Q&A and unrelated history while applying the reset rules when restarting. Prefer the bundled deterministic helper for file operations, invoked by its absolute path under the skill's base directory:
 
 ```bash
-python3 scripts/mentor_state.py --help
+python3 "<skill base>/scripts/mentor_state.py" --root "<learner work directory>" --help
 ```
 
-Use `--root` to target the learner's work directory. Preview destructive operations and require explicit confirmation before deletion. Never delete unrelated files.
+Use `--root` to target the learner's work directory. Keep every progress file inside that directory and never write progress into the skill directory. Preview destructive operations and require explicit confirmation before deletion. Never delete unrelated files.
 
 ## Persist, pause, or complete
 

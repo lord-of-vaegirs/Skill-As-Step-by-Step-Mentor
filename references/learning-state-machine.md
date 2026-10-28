@@ -54,7 +54,7 @@ Reject a phase command used in the wrong state. State the current part, current 
 
 For the target part through the latest unlocked part:
 
-1. preserve a Q&A archive containing the learner's questions and Codex's answers;
+1. preserve a Q&A archive containing the learner's questions and the mentor's answers;
 2. remove memories of theory learned, terminology established, exercise prompts, submitted results, review evidence, optimization decisions, completion markers, part summaries, and affected history events that assert learning or exercise completion;
 3. reset each affected part to pending and reset the target to `part_explanation`;
 4. append one minimal restart history event identifying the target and affected range;
